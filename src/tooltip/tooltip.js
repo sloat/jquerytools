@@ -69,7 +69,8 @@
 		fade: [
 			function(done) {
 				var conf = this.getConf();
-				if (!$.browser.msie || conf.fadeIE) {
+                var opacity = $('html').hasClass('opacity');
+				if (opacity || conf.fadeIE) {
 					this.getTip().fadeTo(conf.fadeInSpeed, conf.opacity, done);
 				}
 				else {
@@ -79,7 +80,8 @@
 			},
 			function(done) {
 				var conf = this.getConf();
-				if (!$.browser.msie || conf.fadeIE) {
+                var opacity = $('html').hasClass('opacity');
+				if (opacity || conf.fadeIE) {
 					this.getTip().fadeOut(conf.fadeOutSpeed, done);
 				}
 				else {

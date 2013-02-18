@@ -12,6 +12,11 @@
  *
  * Since: Mar 2010
  * Date: @DATE 
+ *
+* I have no idea if this really works or not. In fact, I'm inclined to doubt it.
+* The "original" doesn't work in chrome. I updated it to the modern Firefox's wheel
+* event, but I have no clue if it's correct. I have no intention to test, since I don't 
+* actually use this plugin. --Matt
  */
 (function($) { 
 	
@@ -30,25 +35,23 @@
 	};
 
 	// events to bind ( browser sniffed... )
-	var wheelEvents = !$.browser.mozilla ? "mousewheel" : // IE, opera, safari
-		"DOMMouseScroll"+( $.browser.version<"1.9" ? " mousemove" : "" ); // firefox
+	//var wheelEvents = !$.browser.mozilla ? "mousewheel" : // IE, opera, safari
+		//"DOMMouseScroll"+( $.browser.version<"1.9" ? " mousemove" : "" ); // firefox
+    
+    if (window.onmousewheel == undefined) {
+        wheelEvents = 'wheel';
+    }
+    else {
+        wheelEvents = 'mousewheel';
+    }
 
 	// shared event handler
 	function wheelHandler( event ) {
 		
 		switch ( event.type ) {
 			
-			// FF2 has incorrect event positions
-			case "mousemove": 
-				return $.extend( event.data, { // store the correct properties
-					clientX: event.clientX, clientY: event.clientY,
-					pageX: event.pageX, pageY: event.pageY
-				});
-				
-			// firefox	
-			case "DOMMouseScroll": 
-				$.extend( event, event.data ); // fix event properties in FF2
-				event.delta = -event.detail / 3; // normalize delta
+			case "wheel": 
+                event.delta = event.originalEvent.deltaY;
 				break;
 				
 			// IE, opera, safari	

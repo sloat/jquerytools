@@ -27,8 +27,9 @@
 			closeSpeed: 'fast',
 			effect: 'default',
 			
-			// since 1.2. fixed positioning not supported by IE6
-			fixed: !$.browser.msie || $.browser.version > 6, 
+            // since 1.2. fixed positioning not supported by IE6
+            //   -- don't care anymore
+			fixed: true, 
 			
 			left: 'center',		
 			load: false, // 1.2

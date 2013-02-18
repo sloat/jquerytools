@@ -21,7 +21,7 @@
 		slideOffset: 10,
 		slideInSpeed: 200,
 		slideOutSpeed: 200, 
-		slideFade: !$.browser.msie
+		slideFade: $('html').hasClass('opacity')
 	});			
 	
 	// directions for slide effect

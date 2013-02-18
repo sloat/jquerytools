@@ -22,7 +22,8 @@
 			if (inited) { return; }
 			
 			// IE
-			if ($.browser.msie && $.browser.version < '8') {
+			//if ($.browser.msie && $.browser.version < '8') {
+            if ($('html').hasClass('lt-ie8')) {
 				
 				// create iframe that is constantly checked for hash changes
 				if (!iframe) {
